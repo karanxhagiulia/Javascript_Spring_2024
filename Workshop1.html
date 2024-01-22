@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			    h1, h2, h3, h4, h5, h6, p, body {
+					text-align: left;
+				}
+				</style>
+
+
+		<title>Workshop 1</title>
+		<script>
+
+			// 1. JS output and console
+
+			alert("Hello world!"); 
+			alert("Another hello world"); 
+			alert("Still one more hello world");
+
+			// 2. Defining variables
+
+			var firstname = "Giulia "; 
+			var lastname = "Karanxha "; 
+			alert(firstname);
+			document.write(lastname+ " "+firstname);
+			alert(firstname+" "+lastname);
+			console.log(lastname+", "+firstname)
+
+			//3. Conditionals
+
+			var x = 25;
+			var order = 'Beer!';
+
+			if (x > 70) {
+				document.write("<h1>Wow, you're older than 70!</h1>");
+				console.log("Wow, you're older than 70!");
+			} else if (x >= 18 && x <= 30) {
+				document.write("<strong>You're a young adult! Take the " + order + "</strong>");
+				console.log("You're a young adult! Take the " + order);
+			} else if (x > 30 && x <= 50) {
+				document.write("<em>Middle aged man, who ordered some " + order + "</em>");
+				console.log("Middle aged man, who ordered some " + order);
+			} else if (x > 50) {
+				document.write("<h1>You're over 50!</h1>");
+				console.log("You're over 50!");
+			} else {
+				document.write("<p>It seems you're a bit underage.</p>");
+				console.log("It seems you're a bit underage.");
+			}
+
+			//4. Loops
+
+			var arr = [];
+			for (var i=0; i<15; i++) {
+			var randomNumber = Math.floor(Math.random() * 100) + 1;
+			arr.push( Math.random() );
+			console.log(randomNumber);
+			document.write("<p>Random number " + (i + 1) + ": <strong>" + randomNumber + "</strong></p>");
+			} 
+			console.log(arr)
+
+			// 5. Functions walkthrough
+			
+			function areYouOldEnough(age) { 
+				if (age < 18) { 
+					document.write("False!");
+					console.log("You are not old enough, try again!")
+					return false; 
+				} else {
+					document.write("True!");
+					alert("You are over 18!");
+					return true; 
+				} 
+			}
+
+			console.log( areYouOldEnough(16) );
+			document.write( areYouOldEnough(19) );
+
+			alert(areYouOldEnough(5));
+			alert(areYouOldEnough(25));
+
+			//6. Objects
+
+			// Define an object to hold data for a person
+			var person = {
+				firstName:"John", 
+				lastName:"Doe", 
+				age:50, 
+				eyeColor:"blue",
+				address:"001 First St",
+				phone:"34-6574",
+				printInfo: function () {
+					console.log("Name: " + person.firstName + " " + person.lastName);
+					console.log("Age: " + person.age);
+					console.log("Eye Color: " + person.eyeColor);
+					console.log("Address: " + person.address);
+					console.log("Telephone: " + person.phone);
+				}
+			};
+			
+			person.printInfo();
+
+			
+			var peopleArray = [
+				{ firstName: "Donatello", lastName: "Doe", age: 35, eyeColor: "green", address: "111 First Ave", telephone: "34-3453" },
+				{ firstName: "Raffaello", lastName: "Smith", age: 35, eyeColor: "green", address: "789 Pine St", telephone: "34-8765" },
+				{ firstName: "Michelangelo", lastName: "Three", age: 31, eyeColor: "hazel", address: "101 Cedar St", telephone: "34-4321" },
+				{ firstName: "Leonardo", lastName: "Joe", age: 28, eyeColor: "brown", address: "202 Elm St", telephone: "34-9876" }
+			];
+
+
+
+			for (var i = 0; i < peopleArray.length; i++) {
+				var currentPerson = peopleArray[i];
+				console.log("Person " + (i + 1) + ": " + currentPerson.firstName + " " + currentPerson.lastName);
+			}
+
+			//Independent Exercises 1
+
+			document.write("<h3>Exercise 1: </h3>");
+			document.write("<h4> Write a JavaScript function that will return the given man’s age as dogs age. It is usually considered that dogs age is man’s age multiplied by seven: </h4>");
+			
+			function dogage(humanAge) {
+				var dogAge = humanAge * 7;
+				return "<p>The human age of <strong>" + humanAge + "</strong> is a total of <strong>" + dogAge + "</strong> in dog years!</p>";
+			} 
+			
+			document.write(dogage(53));
+
+
+		</script>
+		
+
+	</head>
+
+	<body>
+		<h3>Exercise 2: </h3>
+		<h4>Try to run the following piece of code in the console. There are some errors in the code – try to find them? Use Developer Tools to Debug the Code.</h4>
+		<table class="darkTable">
+			<thead>
+			  <tr>
+				<th>Old code</th>
+				<th>Corrected</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td><pre>
+				var i = 5; var j = 10
+		  		var k = 25; var l = Joe;
+				if (i < j) {
+		  		console.log("i");
+		  		else if (j > k) console.log("k");
+		  		}
+		  		else console.log("j);
+			</pre></td>
+				<td><pre>
+				var i = 5; 
+				var j = 10;
+				var k = 25; 
+				var l = 'Joe';
+				
+				if (i < j) {
+					console.log("i"); 
+				} else if (j > k) {
+					console.log("k");
+				} else {
+					console.log("j");
+				}
+			</pre</td>
+			</tr>
+			<tr>
+			<td>
+			<pre>
+				var arr = [3, 5, 7];
+				for (var i = 0; i <=3; ++i){
+				console.log(arr[i]);
+				}
+			</pre</td>
+			<td><pre>
+				
+			The "i <=3 " means that the loop will iterate a fourth time and have a result of "undefined". 
+			We have to iterate for less than 3 times (the number of items in the array) to avoid this.
+			
+			</pre</td>
+		
+			</tr>
+		
+			</tbody>
+		  </table>
+	</body>
+
+</html>
