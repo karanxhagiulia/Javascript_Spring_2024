@@ -41,6 +41,36 @@
 		</pre>
 		<script>
             <!-- JavaScript goes here -->
+			// Exercise 1
+			document.write('<h2>Exercise 1</h2>');
+			document.write('<p style="font-weight: bold; font-style: italic; text-align: left; color: #333;">"If I had nine hours to chop down a tree, I\'d spend the first six sharpening my ax."</p>');
+			document.write('<p style="font-style: italic; text-align: left; color: #333;">-- Abraham Lincoln</p>');
+
+			// Exercise 2
+			function repeatingText() {
+				var outputElement = document.getElementById("output");
+				var repeatedText = "";
+
+				for (var i = 50; i > 0; i--) {
+					repeatedText += "This line will be repeated " + (i-1) + " more times.";
+				}
+				outputElement.textContent = repeatedText;
+			}
+
+			// Exercise 3
+
+			// Exercise 4
+			
+			// Exercise 5
+
 		</script>
+
+		<h2>Exercise 2</h2>
+		<!-- Button to trigger the function -->
+		<button onclick="repeatingText()">Click to Repeat Text</button>
+
+		<!-- Output area where the text will be displayed -->
+		<div id="output"></div>
+
 	</body>
 </html>
