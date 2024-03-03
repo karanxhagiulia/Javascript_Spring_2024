@@ -39,6 +39,7 @@
 				"http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg"
 			];
 		</pre>
+		<h1>Exercises completed</h1>
 		<script>
             <!-- JavaScript goes here -->
 			// Exercise 1
@@ -58,17 +59,47 @@
 			}
 
 			// Exercise 3
-
+			// another page
 			// Exercise 4
-			
+			//in another web page
 			// Exercise 5
-
+				
 		</script>
 
 		<h2>Exercise 2</h2>
 		<!-- Button to trigger the function -->
 		<button onclick="repeatingText()">Click to Repeat Text</button>
+		<h2>Exercise 3</h2>
+		<p>Click <a href="workshop2_ex3.html">here</a> to test exercise 3!</p>
+		<h2>Exercise 4</h2>
+		<p>Click <a href="workshop2_ex4.html">here</a> to test exercise 4!</p>
+		<h2>Exercise 5</h2>
+		<div id="randomImage"></div>
 
+		<script>
+			var images = [
+				"http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg",
+				"http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg",
+				"http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg"
+			];
+	
+			function displayRandomImage() {
+				var randomIndex = Math.floor(Math.random() * images.length);
+	
+				var imageUrl = images[randomIndex];
+	
+				var imageOutput = document.getElementById("randomImage");
+	
+				var imgElement = document.createElement("img");
+	
+				imgElement.src = imageUrl;
+				imgElement.alt = "Random Image";
+	
+				imageOutput.appendChild(imgElement);
+			}
+	
+			displayRandomImage();
+		</script>
 		<!-- Output area where the text will be displayed -->
 		<div id="output"></div>
 

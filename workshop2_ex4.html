@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Check</title>
+</head>
+<body>
+    <h1>Student Check</h1>
+    <button onclick="checkStudent()">Check if you are a student</button>
+
+    <script>
+        function checkStudent() {
+            // Display a confirmation dialog
+            var isStudent = confirm("Are you a student?");
+            
+            // Check the user's response
+            if (isStudent) {
+                // If the user clicks OK
+                document.body.innerHTML += "<p>Welcome student</p>";
+            } else {
+                // If the user clicks Cancel
+                document.body.innerHTML += "<p>Sorry, this page is for students only</p>";
+            }
+        }
+    </script>
+</body>
+</html>

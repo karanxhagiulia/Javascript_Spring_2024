@@ -4,6 +4,184 @@
 		<title>Workshop 4</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css">
+
+		<script>
+			// 1.1
+			function changeHeading() {
+            var heading = document.querySelector("h1"); 
+            heading.textContent = "Modified Heading!";
+        	}
+			// 1.2
+			function updateStyle() {
+				var heading = document.querySelector("h2"); 
+				heading.style.fontSize = "35px";
+				heading.style.fontStyle = "italic";
+				heading.style.color = "red";
+				heading.style.backgroundColor = "pink";
+			}
+			//1.3
+			function thirdfunction() {
+				// Create a new paragraph element
+				var paragraph = document.createElement("p");
+				// Set the text content of the paragraph (with Lorem Ipsum text in italics)
+				paragraph.innerHTML = '<em>"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit."</em>';
+				
+				// Find the 4th paragraph tag on the page
+				var fourthParagraph = document.getElementsByTagName("p")[3];
+				// Insert the new paragraph after the 4th paragraph
+				fourthParagraph.parentNode.insertBefore(paragraph, fourthParagraph.nextSibling);
+
+				// Change the background color of the entire page
+				document.body.style.backgroundColor = "#3399FF36";
+				
+			}
+			// 2.1
+
+				function hide() {
+				var element = document.getElementById("me");
+				element.style.display = "none";
+			}
+
+			// 2.2
+			function show() {
+				var element = document.getElementById("me");
+				element.style.display = "block";
+			}
+
+			// 2.3
+			function changeFontSize() {
+				var elements = document.getElementsByClassName("surprise");
+				for (var i = 0; i < elements.length; i++) {
+					elements[i].style.fontSize = "20px";
+				}
+			}
+
+			// 3
+
+			function showUserChoice() {
+				var dropdown = document.getElementById("mySelect");
+				var selectedOption = dropdown.options[dropdown.selectedIndex].text;
+				alert("You selected: " + selectedOption);
+			}
+
+			function addBorderOnHover() {
+				var image = document.getElementById("carimage");
+				image.addEventListener("mouseover", function() {
+					this.style.border = "10px solid red";
+				});
+				image.addEventListener("mouseout", function() {
+					this.style.border = "none"; 
+				});
+			}
+
+			function changeImage() {
+				var dropdown = document.getElementById("mySelect");
+				var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+				var image = document.getElementById("carimage");
+				switch (selectedOption) {
+					case "BMW":
+						image.src = "https://www.bmw-me.com/content/dam/bmw/common/all-models/m-series/series-overview/bmw-m-series-seo-overview-ms-04.jpg";
+						break;
+					case "Audi":
+						image.src = "https://mediaservice.audi.com/media/fast/H4sIAAAAAAAAAFvzloG1tIiBOTrayfuvpGh6-m1zJgaGigIGBgZGoDhTtNOaz-I_2DhCHsCElzEwF-SlMwJZKUycmbmJ6an6QD4_I3taTmV-aUkxO0grz-1b57e45B4rftihLTtz8s6rLi-mbmJgBepi9AASTM-ABN8uIMHpzQAmQebNBRF2ID6TFTMDA2sFkBHJAAKCGgZEAmF2F9cQR0-fYAAKUNmH2QAAAA?wid=850"; // Replace with Audi image URL
+						break;
+					case "Mercedes":
+						image.src = "https://stimg.cardekho.com/images/carexteriorimages/630x420/Mercedes-Benz/AMG-GT-4-Door-Coupe/9792/1681201395108/front-left-side-47.jpg?impolicy=resize&imwidth=480"; // Replace with Mercedes image URL
+						break;
+					case "Volvo":
+						image.src = "https://www.volvocars.com/images/cs/v3/assets/bltab26d231d43e6180/blt0640efe60e8ee0ba/65799f141b8311000dcebdac/xc60-phev-my24-responsive.jpg?branch=prod_alias&auto=webp&h=860&iar=0&w=1800"; 
+						break;
+
+				}
+			}
+
+			// Call the functions to enable the functionalities
+			window.onload = function() {
+				showUserChoice(); // Show initial selected option
+				addBorderOnHover(); // Enable colored border on image hover
+				changeImage(); // Change image based on initial selected option
+			}
+
+
+			// Exercise 4.1: Move the image
+			function changePosition() {
+				var image = document.getElementById("carimage");
+				image.style.left = "200px";
+				image.style.top = "500px";
+			}
+
+			// Exercise 4.2: Animate the image
+			var movingRight = true;
+			var animationInterval;
+
+			function doMove() {
+				var image = document.getElementById("carimage");
+				var currentLeft = parseInt(image.style.left) || 0;
+
+				if (movingRight) {
+					image.style.left = (currentLeft + 10) + "px";
+					if (currentLeft >= window.innerWidth - image.width) {
+						movingRight = false;
+					}
+				} else {
+					image.style.left = (currentLeft - 10) + "px";
+					if (currentLeft <= 0) {
+						movingRight = true;
+					}
+				}
+			}
+						
+			// Exercise 4.3: Fade out the image
+			var opacity = 1.0;
+
+			function fadeOut() {
+				var image = document.getElementById("carimage");
+				opacity -= 0.1;
+				if (opacity >= 0) {
+					image.style.opacity = opacity;
+				} else {
+					clearInterval(animationInterval);
+				}
+			}
+	
+			// Exercise 4.4: Remove the image
+			function remove() {
+				var image = document.getElementById("carimage");
+				image.parentNode.removeChild(image);
+			}
+
+			// EXERCISE 5
+			function insertRows() {
+				// Retrieve the input values
+				var name = document.getElementById("textfield").value;
+				var position = document.getElementById("textfield2").value;
+				var salary = document.getElementById("textfield3").value;
+
+				// Get the table body
+				var tableBody = document.getElementById("table5");
+
+				// Create a new row
+				var newRow = document.createElement("tr");
+
+				// Create and append table data cells
+				var nameCell = document.createElement("td");
+				nameCell.textContent = name;
+				newRow.appendChild(nameCell);
+
+				var positionCell = document.createElement("td");
+				positionCell.textContent = position;
+				newRow.appendChild(positionCell);
+
+				var salaryCell = document.createElement("td");
+				salaryCell.textContent = salary;
+				newRow.appendChild(salaryCell);
+
+				// Append the new row to the table body
+				tableBody.appendChild(newRow);
+			}
+
+
+		</script>
 	</head>
 	<body class="ws4">
 		<h1>Workshop 4: DOM Scripting</h1>
@@ -15,8 +193,8 @@
 		<p>&nbsp;Below you will see three buttons. Edit the source code and add an onClick-events to these buttons. Use Developer Console to find the </p>
 		<p>
 		  <button onclick="changeHeading();">Button 1</button>
-		  <button onclick="secondButton">Button 2</button>
-		  <button onclick="">Button 3</button>
+		  <button onclick="updateStyle();">Button 2</button>
+		  <button onclick="thirdfunction();">Button 3</button>
 		</p>
 
 		<ul>
@@ -41,7 +219,7 @@
 			</label>
 			<br>
 			<label>
-				<input type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2"> 
+				<input onchange="changeFontSize()" type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2"> 
 				<span id="surpise">Surprise</span>
 			</label>
 		</p>
@@ -60,12 +238,13 @@
 				<li>When you have accomplished the above, change the image (id=&quot;carimage&quot;) below based on the users choice on the pulldown menu below. Find appropriate images from the web.
 			</ul>
 		  <p>Select a new car from the list.</p>
-		  <select name="mySelect" id="mySelect" onchange="">
-			<option value="BMW">BMW         
-			<option value="Audi">Audi
-			<option value="Mercedes">Mercedes
-			<option value="Volvo">Volvo
-		  </select>
+		  <select name="mySelect" id="mySelect" onchange="showUserChoice(); changeImage();">
+			<option value="BMW">BMW</option>
+			<option value="Audi">Audi</option>
+			<option value="Mercedes">Mercedes</option>
+			<option value="Volvo">Volvo</option>
+		</select>
+		
 		  <br>
 		  <br>
 		<img alt="" onmouseover="" onmouseout="" style="left: 0px; opacity: 1;" src="http://cdn.bmwblog.com/wp-content/uploads/2015/11/BMW-2-Series-Gran-Coupe-Rendering.jpg" width="400" id="carimage"/>
@@ -97,7 +276,7 @@
 				<th>Salary</th>
 			  </tr>
 			</thead>
-			<tbody>
+			<tbody id="table5">
 			  <tr>
 				<td>Tiger Nixon</td>
 				<td>System Architect</td>
