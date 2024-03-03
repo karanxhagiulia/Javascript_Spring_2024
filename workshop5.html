@@ -4,6 +4,11 @@
 		<meta charset="UTF-8">
 		<title>Workshop 5</title>
         <link rel="stylesheet" href="css/styles.css">
+        <script>
+      
+
+
+        </script>
     </head>
     <body>
         <h1>Workshop 5: Smart Forms</h1>
@@ -16,22 +21,72 @@
         <p data-line="6">a) Write JavaScript code which   checks the input fields when the form submit-button is clicked. Display the   entered values with alert -dialogs. Use onsubmit-event on the form tag. Make sure that your code cancels the submission of the form if needed. Hint: See the PowerPoint -slides.</p>
         <p data-line="8">b) Enhance the code and write   if-statements to check the following: the length of email address should be atleast 6 and   less than 15. It should also have a  @ - character. Check also that the comment field is not be empty and the content should be trimmed down to 50 characters. Utilize JavaScript <a href="http://www.w3schools.com/js/js_string_methods.asp" target="_blank">String-methods</a>.</p>
         <p data-line="12">c) Should an error occur,   highlight the erroneous field and provide some feedback to the user.   Preferably by displaying some text message on the page, next to the   input field. See the lecture slides for demo.</p>
-        <form onsubmit="">
+        <form id="contactForm" onsubmit="return validateForm()">
             <div class="no-border">
                 <label>Email address:<br>
-                    <input type="text" name="email">
+                    <input type="text" name="email" >
+                    <span id="emailError" class="error"></span>
                 </label>
             </div>
             <div class="no-border">
                 <label>
                     Comment:<br>
                 </label>
-                <textarea name="comment"></textarea>
+                <textarea name="comment" ></textarea>
+                <span id="commentError" class="error"></span>
             </div>
             <br>
             <input type="submit" value="Send">
         </form>
- 
+
+        <script>
+            function validateForm() {
+                var email = document.forms["contactForm"]["email"].value.trim();
+                var comment = document.forms["contactForm"]["comment"].value.trim();
+                var emailError = document.getElementById("emailError");
+                var commentError = document.getElementById("commentError");
+            
+                // Reset error messages and styles
+                emailError.textContent = "";
+                commentError.textContent = "";
+                document.forms["contactForm"]["email"].style.borderColor = "";
+                document.forms["contactForm"]["comment"].style.borderColor = "";
+            
+                var errors = []; // Array to store error messages
+            
+                // Validation for email
+                if (email.length < 6 || email.length >= 15 || email.indexOf("@") === -1) {
+                    errors.push("The email address should be between 6 and 14 characters with the @ symbol.");
+                    document.forms["contactForm"]["email"].style.borderColor = "red"; // Highlighting erroneous field
+                    emailError.textContent = "Invalid email format"; // Providing feedback next to the input field
+                }
+            
+                // Validation for comment
+                if (comment === "" || comment.length > 50) {
+                    errors.push("Comment should not be empty and should not exceed 50 characters.");
+                    document.forms["contactForm"]["comment"].style.borderColor = "red"; // Highlighting erroneous field
+                    commentError.textContent = "Invalid comment"; // Providing feedback next to the input field
+                }
+            
+                // Display accumulated error messages, if any
+                if (errors.length > 0) {
+                    alert(errors.join("\n"));
+                    return false; // Cancel form submission
+                }
+            
+                // Display entered values with alert dialogs
+                alert("Email: " + email + "\nComment: " + comment);
+            
+                // Cancel form submission
+                return false;
+            }
+            </script>
+            
+            
+            
+
+
+
         <hr/>
         <h2>Exercise 2: Membership Calculator</h2>
         <p data-line="16">Below there is a membership calculator form. It has 3 fields: Membership Type (pulldown), Years (input) and Costs (input). User can use the pulldown to   select which plan user wants to choose (Basic = 10€, Premium=15€,   Gold=20€) and then enter the number of years he wants to pay for.</p>
@@ -46,10 +101,10 @@
                 <div>
                     <label for="type">Type</label> 
                     <select name="type" id="type" size="4" required>
-                        <option value="basic">Basic - $10.00</option>
-                        <option value="premium">Premium - $15.00</option>
-                        <option value="gold">Gold - $20.00</option>
-                        <option value="platinum">Platinum - $25.00</option>
+                        <option value="basic">Basic - €10.00</option>
+                        <option value="premium">Premium - €15.00</option>
+                        <option value="gold">Gold - €20.00</option>
+                        <option value="platinum">Platinum - €25.00</option>
                     </select>
                 </div>
                 <div>
@@ -58,12 +113,53 @@
                 </div>
                 <div>
                     <label for="cost">Cost</label>
-                    <input type="text" name="cost" id="cost" disabled>
+                    <input type="text" name="cost" id="cost" readonly>
                 </div>
-                <input type="submit" value="Calculate" id="submit">
-          </fieldset>
+                <button type="button" onclick="calculate()">Calculate</button>          
+                <span id="discountText"></span> 
+            </fieldset>
         </form>
-            
+        <script>
+            function calculate() {
+                // Get the selected membership type and number of years
+                var type = document.getElementById("type").value;
+                var years = parseInt(document.getElementById("years").value);
+    
+                // Define the base cost for each membership type
+                var baseCost = 0;
+                switch (type) {
+                    case "basic":
+                        baseCost = 10;
+                        break;
+                    case "premium":
+                        baseCost = 15;
+                        break;
+                    case "gold":
+                        baseCost = 20;
+                        break;
+                    case "platinum":
+                        baseCost = 25;
+                        break;
+                }
+    
+                var totalCost = baseCost * years;
+    
+                if (years > 2) {
+                    discountText.textContent = "Congratulations! You are eligible for a 20% discount.";
+
+                    totalCost *= 0.8; 
+
+                    if (years >= 5) {
+                        totalCost -= 5; 
+                        alert("Congratulations! You have received an extra €5 discount!");
+                    }
+                } else {
+                    discountText.textContent = ""; 
+                }
+                
+                document.getElementById("cost").value = totalCost.toFixed(2);
+            }
+        </script>    
         <p data-line="20">&nbsp;</p>
         <hr/>
         <h2>Exercise 3: Book Order</h2>
