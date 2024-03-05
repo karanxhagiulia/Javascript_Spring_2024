@@ -170,7 +170,7 @@
             <p>Calculate a bulk book order.</p>
             <div>
                 <label for="quantity">Quantity</label>
-                <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                <input type="number" name="quantityex3" id="quantityex3" value="1" min="1" required>
             </div>
             <div>
                 <label for="price">Price Per Unit</label>
@@ -182,7 +182,7 @@
             </div>
             <div>
                 <label for="discount">Discount</label>
-                <input type="number" name="discount" id="discount" value="0.00" required>
+                <input type="number" name="discountex3" id="discountex3" value="0.00" required>
             </div>
             <div>
                 <label for="shipping">Shipping</label>
@@ -196,35 +196,7 @@
                 <input type="submit" value="Calculate" id="submit-calculate" onClick="calculate()">
             </div>
 
-            <script>
-
-                function calculate() {
-                    var quantity = parseInt(document.getElementById("quantity").value);
-                    var price = parseFloat(document.getElementById("price").value);
-                    var tax = parseFloat(document.getElementById("tax").value);
-                    var discount = parseFloat(document.getElementById("discount").value);
-                    var shipping = parseFloat(document.getElementById("shipping").value);
-                    // Apply discount if quantity is greater than 100
-                    if (quantity > 100) {
-                        discount *= 2;
-                    }
-
-                    // Calculate subtotal
-                    var subtotal = quantity * price;
-
-                    // Apply discount
-                    subtotal -= discount;
-
-                    // Calculate total with tax
-                    var totalWithTax = subtotal * (1 + tax / 100);
-
-                    // Add shipping cost
-                    var total = totalWithTax + shipping;
-
-                    // Update total value in the form
-                    document.getElementById("total").value = total.toFixed(2);
-                }
-            </script>
+            <script src="js/shopping.js"></script>
         </fieldset>
         <hr/>
         <h2>Exercise 4: Hidden Extra fields</h2>
